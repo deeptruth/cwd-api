@@ -29,14 +29,14 @@ class NoteAPITest extends TestCase
      * @test
      * @return void
      */
-    public function it_should_successfully_create_a_note()
+    public function it_should_successfully_create_notes()
     {
         $title = 'test title here';
         $description = 'test description here';
-        $response = $this->post('/api/notes', [
-            'title' => $title,
-            'description' => $description,
-        ]);
+        $response = $this->post('/api/notes', [[
+                    'title' => $title,
+                    'description' => $description,
+                ]]);
 
         $response->assertStatus(200);
         $this->assertDatabaseHas('notes', [

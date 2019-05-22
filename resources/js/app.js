@@ -19,7 +19,11 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('notes', require('./components/Notes.vue').default);
+Vue.component('navbar', require('./components/NavBar.vue').default);
+Vue.component('icon-status', require('./components/IconStatus.vue').default);
+Vue.component('create-note', require('./components/CreateNotes.vue').default);
+Vue.component('to-do-notes', require('./components/ToDoNotesList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +31,51 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// const store = {
+// 	state: {
+// 		notes: [],
+// 	},
+// 	getters: {
+
+// 	},
+// 	actions: {
+// 		async getNotes(){
+// 			 await res = axios
+// 			 commit('setNote', res)
+// 		} 
+// 	},
+// 	mutatations: {
+// 		setNote(state, ntoes){
+// 			 state.notest = ntoes
+// 		}
+// 	}
+
+// }
+const store = new Vuex.Store({
+  	state: {
+    	notes: [],
+  	},
+  	getters: {
+	    notes: state => {
+	      return state.notes.data;
+	    }
+	},
+	actions: {
+		async getNotes({ commit }){
+			let res = await axios
+                  .get('api/notes');
+
+			commit('setNote', res)
+		} 
+	},
+	mutations: {
+		setNote(state, notes){
+			 state.notes = notes
+		}
+	}
+});
+
 const app = new Vue({
+	store,
     el: '#app',
 });

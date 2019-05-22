@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Note;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNoteRequest;
@@ -27,11 +28,18 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateNoteRequest $request)
+    public function store(Request $request)
     {
-        $note = Note::create($request->toArray());
+        $notes = $request->toArray();
+        
+        foreach ($notes as $key => $note) {
+            $notes[$key]['created_at'] = Carbon::now()->toDateTimeString();
+            $notes[$key]['updated_at'] = Carbon::now()->toDateTimeString();
+        }
 
-        return response($note);
+        Note::insert($notes);
+
+        return response('Successfully Created');
     }
 
     /**
