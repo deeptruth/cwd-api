@@ -48,7 +48,7 @@ class NoteController extends Controller
         $note->fill($request->toArray());
         $note->update();
 
-        return $id;
+        return $note;
     }
 
     /**
