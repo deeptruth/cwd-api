@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('notes', require('./components/Notes.vue').default);
 Vue.component('navbar', require('./components/NavBar.vue').default);
-Vue.component('icon-status', require('./components/IconStatus.vue').default);
+Vue.component('status', require('./components/Status.vue').default);
 Vue.component('create-note', require('./components/CreateNotes.vue').default);
 Vue.component('to-do-notes', require('./components/ToDoNotesList.vue').default);
 

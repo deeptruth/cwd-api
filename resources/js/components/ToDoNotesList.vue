@@ -4,14 +4,15 @@
         <tr>
           <th scope="col" style="width:4%"></th>
           <th scope="col" style="width:20%">Title</th>
-          <th scope="col" style="width:60%">Description</th>
+          <th scope="col" style="width:45%">Description</th>
+          <th scope="col" style="width:10%">Date Created</th>
+          <th scope="col" style="width:10%">Date Updated</th>
           <th style="width:16%">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="note in notes">
-          <!-- <td v-html="getIconStatus(note.status)" @click="test(note.id)"></td> -->
-          <td style="text-align: center"><icon-status :note="note"></icon-status></td>
+          <td style="text-align: center"><status :note="note"></status></td>
           <td>
             <div v-if="checkIfEditable(note)">{{ note.title }}</div>
             <div v-if="!checkIfEditable(note)">
@@ -22,6 +23,12 @@
             <div v-if="!checkIfEditable(note)">
               <input type="" class="form-control" v-model="active_note_description">
             </div>
+          </td>
+          <td>
+            <div>{{ note.created_at }}</div>
+          </td>
+          <td>
+            <div>{{ note.updated_at }}</div>
           </td>
           <td>
             <button v-if="checkIfEditable(note)" type="button" class="btn btn-secondary" @click="editNote(note)"><i class="fas fa-edit"></i></button> 
