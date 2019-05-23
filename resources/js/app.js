@@ -24,6 +24,7 @@ Vue.component('navbar', require('./components/NavBar.vue').default);
 Vue.component('status', require('./components/Status.vue').default);
 Vue.component('create-note', require('./components/CreateNotes.vue').default);
 Vue.component('to-do-notes', require('./components/ToDoNotesList.vue').default);
+Vue.component('App', require('./views/App.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -75,7 +76,32 @@ const store = new Vuex.Store({
 	}
 });
 
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+import Login from './views/Login'
+import Home from './views/Home'
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login,
+        },
+    ],
+});
+
+
 const app = new Vue({
 	store,
     el: '#app',
+    router,
 });

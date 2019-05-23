@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}"></meta>
         <script>window.laravel = {csrfToken: '{{ csrf_token() }}'}</script>
 
-        <title>CWD deNoted</title>
+        <title>Testing</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -20,9 +20,8 @@
     </head>
     <body>
         <div id="app">
-            <navbar></navbar>
             <div class="container-fluid">
-                <notes></notes>
+                <app></app>
             </div>
         </div>
 
